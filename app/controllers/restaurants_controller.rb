@@ -7,7 +7,7 @@ class RestaurantsController < ApplicationController
 
     def show
         rest = find_resturant
-        render json: rest
+        render json: rest, include: { pizzas: { only: [:id, :name, :ingredients] } }
     end
 
     def destroy
