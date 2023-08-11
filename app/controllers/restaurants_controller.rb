@@ -13,6 +13,7 @@ class RestaurantsController < ApplicationController
     def destroy
         rest = find_resturant
         rest.destroy
+        render json: {}
         head :no_content
     end
 
