@@ -1,4 +1,6 @@
 class RestaurantPizzasController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def create
       restaurant_pizza = RestaurantPizza.create(restaurant_pizza_params)
   
