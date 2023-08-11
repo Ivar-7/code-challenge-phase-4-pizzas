@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_11_093722) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_11_094010) do
   create_table "pizzas", force: :cascade do |t|
     t.string "name"
     t.text "ingredients"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "restaurant_pizzas", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "pizza_id", null: false
+    t.integer "restaurant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pizza_id"], name: "index_restaurant_pizzas_on_pizza_id"
+    t.index ["restaurant_id"], name: "index_restaurant_pizzas_on_restaurant_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -25,4 +35,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_093722) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "restaurant_pizzas", "pizzas"
+  add_foreign_key "restaurant_pizzas", "restaurants"
 end
